@@ -129,4 +129,7 @@ function gameFlow() {
 // gameButtons.forEach(btn => btn.addEventListener("click", gameBoard.placeMarker));
 
 const markerSelection = document.querySelectorAll(".markers div");
-markerSelection.forEach(mk => mk.addEventListener("click", createPlayers));
+markerSelection.forEach(mk => mk.addEventListener("click", function () {
+    const { player1, player2 } = createPlayers();
+}));
+
