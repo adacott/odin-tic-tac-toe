@@ -18,11 +18,11 @@ function createPlayer(name, marker) {
     function getPlayerInfo() {
         return `${name} = ${marker}`;
     }
-    return { getPlayerInfo };
+    return { getPlayerInfo, name, marker };
 }
 
-function game() {
-    gameBoard.createBoard();
+function playGame() {
+    board = gameBoard.createBoard();
 
     // Create player 1 object
     let name = prompt("Player 1, what is your name?: ", "Player 1");
@@ -40,7 +40,17 @@ function game() {
     const player2 = createPlayer(name, marker2);
     console.log(`${player1.getPlayerInfo()} || ${player2.getPlayerInfo()}`);
 
+    console.log("Player 1, make your move!");
 
+    p = prompt(`Pick your location ${player1.name} (from 1 to 9, numbering from top left): `);
+    p -= 1;
+    let row = Math.floor(p / 3);
+    let col = p % 3;
 
+    board[row, col] = `${player1.marker}`;
+    console.log(board);
 
 }
+
+
+
