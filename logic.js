@@ -13,10 +13,10 @@ const gameBoard = (function () {
         console.log(board);
     }
 
-    function placeMarker(player) {
-        player1 = createPlayer("Adam", "X");
-        marker = player1.marker
-        this.innerHTML = `${marker}`;
+    function placeMarker() {
+        // mark = player.marker
+        // this.innerHTML = `${mark}`;
+        console.log(player1);
     }
 
     function checkForTie() {
@@ -103,33 +103,37 @@ function createPlayer(mark) {
     const updateScore = () => score++;
     const displayScore = () => score;
 
-    console.log(`Name is ${name} and marker is: ${marker}`);
-
     return { name, marker, updateScore, displayScore };
 }
 
 // function to create both players in a game after the initial click
 function createPlayers() {
-    let player1 = createPlayer(`${this.innerHTML}`);
-    let marker = (player1.marker === "X") ? "O" : "X";
-    let player2 = createPlayer(marker);
+    console.log(this.innerHTML);
+    player1 = createPlayer(`${this.innerHTML}`);
+    let mk = (player1.marker === "X") ? "O" : "X";
+    player2 = createPlayer(mk);
 
     const selection = document.querySelector(".selection");
     selection.style.visibility = "hidden";
-
-    return { player1, player2 };
 }
 
 function gameFlow() {
-
+    console.log(player1);
 }
 
+let player1, player2;
 
-// let = gameButtons = document.querySelectorAll(".board div");
-// gameButtons.forEach(btn => btn.addEventListener("click", gameBoard.placeMarker));
+let = gameButtons = document.querySelectorAll(".board div");
+gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
 
 const markerSelection = document.querySelectorAll(".markers div");
-markerSelection.forEach(mk => mk.addEventListener("click", function () {
-    const { player1, player2 } = createPlayers();
-}));
+markerSelection.forEach(mk => mk.addEventListener("click", createPlayers));
 
+
+// markerSelection.forEach(mk => mk.addEventListener("click", function () {
+//     // Update player1 and player2 in the higher scope
+//     let createdPlayers = createPlayers(this.innerHTML);
+//     player1 = createdPlayers.player1;
+//     player2 = createdPlayers.player2;
+//     console.log(player1);
+// }));
