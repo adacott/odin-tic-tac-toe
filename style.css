@@ -48,6 +48,7 @@ main div div {
   border: 2px solid black;
   border-radius: 8px;
   background-color: rgb(113, 113, 248);
+  box-shadow: 0 0 1px black;
 }
 
 footer {

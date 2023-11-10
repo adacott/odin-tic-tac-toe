@@ -4,6 +4,10 @@ $primary-color: rgb(146, 146, 146);
 $secondary-color: rgb(56, 56, 56);
 $accents: rgb(113, 113, 248);
 
+@mixin shadow {
+    box-shadow: 0 0 1px black;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -54,6 +58,7 @@ main {
             border: 2px solid black;
             border-radius: 8px;
             background-color: $accents;
+            @include shadow();
         }
     }
 }

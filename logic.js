@@ -54,5 +54,12 @@ function gameFlow() {
 }
 
 function playGame() {
-    gameFlow();
+}
+
+
+let = gameButtons = document.querySelectorAll(".board div");
+gameButtons.forEach(btn => btn.addEventListener("click", placeMarker));
+
+function placeMarker() {
+    this.innerHTML = "X";
 }
