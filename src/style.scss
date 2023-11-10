@@ -101,7 +101,7 @@ main {
                 }
 
                 &:active {
-                    transform: scaleX(1.1);
+                    transform: scale(0.95);
                 }
             }
         }
@@ -130,6 +130,7 @@ main {
 
             &:hover {
                 background-color: rgb(139, 139, 252);
+                cursor: default;
             }
 
             &:active {
@@ -176,6 +177,15 @@ main {
             text-align: center;
             font-size: 3rem;
             border-radius: 8px;
+
+            &:hover {
+                cursor: default;
+                background-color: $primary-color
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
         }
     }
 

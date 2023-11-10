@@ -70,7 +70,7 @@ main .selection .markers div:hover {
   cursor: default;
 }
 main .selection .markers div:active {
-  transform: scaleX(1.1);
+  transform: scale(0.95);
 }
 main .board {
   width: 85%;
@@ -94,6 +94,7 @@ main .board div {
 }
 main .board div:hover {
   background-color: rgb(139, 139, 252);
+  cursor: default;
 }
 main .board div:active {
   transform: translateY(2px);
@@ -132,6 +133,13 @@ main .restart div {
   text-align: center;
   font-size: 3rem;
   border-radius: 8px;
+}
+main .restart div:hover {
+  cursor: default;
+  background-color: rgb(146, 146, 146);
+}
+main .restart div:active {
+  transform: scale(0.95);
 }
 
 footer {
