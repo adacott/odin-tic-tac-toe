@@ -46,8 +46,9 @@ function gameFlow() {
     console.log(`${player1.getPlayerInfo()} || ${player2.getPlayerInfo()}`);
 
     // Decide the current player (current player will always be "X")
-    let currentPlayer = (marker === "X") ? `${player1}` : `${player2}`;
-    console.log(currentPlayer);
+    let currentPlayer = (player1.marker === "X") ? player1 : player2;
+    // let currentPlayer = player1;
+    console.log(currentPlayer.name);
 
 
 
@@ -68,8 +69,8 @@ function gameFlow() {
 
     //     board[row][col] = `${player1.marker}`;
     //     console.log(board);
-    // }
+}
 
 
-    let = gameButtons = document.querySelectorAll(".board div");
-    gameButtons.forEach(btn => btn.addEventListener("click", gameBoard.placeMarker));
+let = gameButtons = document.querySelectorAll(".board div");
+gameButtons.forEach(btn => btn.addEventListener("click", gameBoard.placeMarker));
