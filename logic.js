@@ -21,8 +21,9 @@ function createPlayer(name, marker) {
     return { getPlayerInfo, name, marker };
 }
 
-function playGame() {
+function gameFlow() {
     board = gameBoard.createBoard();
+
 
     // Create player 1 object
     let name = prompt("Player 1, what is your name?: ", "Player 1");
@@ -40,17 +41,18 @@ function playGame() {
     const player2 = createPlayer(name, marker2);
     console.log(`${player1.getPlayerInfo()} || ${player2.getPlayerInfo()}`);
 
+    // Create a function here to handle player moves, code a separate function that this function references
+    // calls to check if a player has won, starting after 3 total moves.
     console.log("Player 1, make your move!");
 
-    p = prompt(`Pick your location ${player1.name} (from 1 to 9, numbering from top left): `);
-    p -= 1;
+    p = prompt(`Pick your location ${player1.name} (from 1 to 9, numbering from top left): `) - 1;
     let row = Math.floor(p / 3);
     let col = p % 3;
 
-    board[row, col] = `${player1.marker}`;
+    board[row][col] = `${player1.marker}`;
     console.log(board);
-
 }
 
-
-
+function playGame() {
+    gameFlow();
+}
