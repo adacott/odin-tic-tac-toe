@@ -98,8 +98,11 @@ function createPlayer(mark) {
     createPlayer.count = (createPlayer.count || 0) + 1;
     const name = `Player ${createPlayer.count}`;
     const marker = mark;
+    let score = 0;
+
     const updateScore = () => score++;
     const displayScore = () => score;
+
     console.log(`Name is ${name} and marker is: ${marker}`);
 
     return { name, marker, updateScore, displayScore };
@@ -107,63 +110,23 @@ function createPlayer(mark) {
 
 // function to create both players in a game after the initial click
 function createPlayers() {
-    player1 = createPlayer(`${this.innerHTML}`);
-    marker = (player1.marker === "X") ? "O" : "X";
-    player2 = createPlayer(marker);
+    let player1 = createPlayer(`${this.innerHTML}`);
+    let marker = (player1.marker === "X") ? "O" : "X";
+    let player2 = createPlayer(marker);
+
+    const selection = document.querySelector(".selection");
+    selection.style.visibility = "hidden";
+
+    return { player1, player2 };
 }
 
 function gameFlow() {
 
-
-
-    // Create player 1 object
-    // let name = prompt("Player 1, what is your name?: ", "Player 1");
-    // let marker = prompt(`${name}, what marker do you choose, X or O?: `, "X").toUpperCase();
-    // const player1 = createPlayer(name, marker, 0);
-
-    // // Create player 2 object
-    // name = prompt("Player 2, what is your name?: ", "Player 2");
-    // marker2 = (marker === "X") ? "O" : "X"; // use ternary operator to condense
-    // const player2 = createPlayer(name, marker2, 0);
-    // console.log(`${player1.getPlayerInfo()} || ${player2.getPlayerInfo()}`);
-
-    // // Decide the current player (current player will always be "X")
-    // let currentPlayer = (player1.marker === "X") ? player1 : player2;
-    // console.log(currentPlayer.name);
-
-    // // Gameplay loop until win or tie
-    // while (true) {
-    //     gameBoard.displayBoard();
-
-    //     // Place current player's marker based on where they clicked
-    //     gameBoard.placeMarker(currentPlayer);
-
-    //     // check for a winner
-    //     gameBoard.checkForWin();
-
-    //     // check for a tie
-    //     gameBoard.checkForTie();
-
-    //     // Iterate the score: 
-    //     gameBoard.iterateScore();
-
 }
 
 
-
-//     // Create a function here to handle player moves, code a separate function that this function references
-//     // calls to check if a player has won, starting after 3 total moves.
-//     console.log("Player 1, make your move!");
-
-//     p = prompt(`Pick your location ${player1.name} (from 1 to 9, numbering from top left): `) - 1;
-//     let row = Math.floor(p / 3);
-//     let col = p % 3;
-
-//     board[row][col] = `${player1.marker}`;
-//     console.log(board);
-
-let = gameButtons = document.querySelectorAll(".board div");
-gameButtons.forEach(btn => btn.addEventListener("click", gameBoard.placeMarker));
+// let = gameButtons = document.querySelectorAll(".board div");
+// gameButtons.forEach(btn => btn.addEventListener("click", gameBoard.placeMarker));
 
 const markerSelection = document.querySelectorAll(".markers div");
 markerSelection.forEach(mk => mk.addEventListener("click", createPlayers));
