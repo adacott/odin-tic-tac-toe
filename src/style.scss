@@ -68,7 +68,7 @@ main {
     border-right: 1px solid $accents;
 
     // The section for when the game starts and player 1 has to choose their marker
-    .container {
+    .selection {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -86,8 +86,7 @@ main {
         .markers {
             display: flex;
 
-            .x,
-            .o {
+            div {
                 background-color: $secondary-color;
                 padding: 10px 40px;
                 margin: 0 20px;
@@ -95,6 +94,15 @@ main {
                 text-align: center;
                 font-size: 3rem;
                 border-radius: 8px;
+
+                &:hover {
+                    background-color: $primary-color;
+                    cursor: default;
+                }
+
+                &:active {
+                    transform: scaleX(1.1);
+                }
             }
         }
     }
@@ -106,6 +114,7 @@ main {
         display: flex;
         flex-flow: row wrap;
         place-content: center;
+        visibility: hidden;
 
         div {
             display: flex;
@@ -139,6 +148,7 @@ main {
         position: relative;
         transform: translateY(-20px);
         @include shadow("heavy");
+        visibility: hidden;
 
         div {
             text-align: center;
@@ -156,6 +166,7 @@ main {
         align-items: center;
         position: absolute;
         text-align: center;
+        visibility: hidden;
 
         div {
             background-color: $secondary-color;
