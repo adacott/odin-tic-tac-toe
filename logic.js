@@ -13,10 +13,13 @@ const gameBoard = (function () {
         console.log(board);
     }
 
-    function placeMarker() {
-        // mark = player.marker
-        // this.innerHTML = `${mark}`;
-        console.log(player1);
+    function placeMarker(location, event) {
+        mark = player1.marker
+        event.innerHTML = `${mark}`;
+        const row = Math.floor(location / 3);
+        const col = location % 3;
+
+        board[row][col] = mark;
     }
 
     function checkForTie() {
@@ -78,8 +81,6 @@ const gameBoard = (function () {
                 player2.updateScore();
             }
         }
-
-
     }
 
     function clearBoard() {
@@ -118,7 +119,9 @@ function createPlayers() {
 }
 
 function gameFlow() {
-    console.log(player1);
+    loc = this.dataset.indexNumber;
+    gameBoard.placeMarker(loc, this);
+    gameBoard.displayBoard();
 }
 
 let player1, player2;
@@ -129,11 +132,3 @@ gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
 const markerSelection = document.querySelectorAll(".markers div");
 markerSelection.forEach(mk => mk.addEventListener("click", createPlayers));
 
-
-// markerSelection.forEach(mk => mk.addEventListener("click", function () {
-//     // Update player1 and player2 in the higher scope
-//     let createdPlayers = createPlayers(this.innerHTML);
-//     player1 = createdPlayers.player1;
-//     player2 = createdPlayers.player2;
-//     console.log(player1);
-// }));
