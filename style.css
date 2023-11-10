@@ -52,6 +52,7 @@ main .selection {
   padding: 10px 0;
   width: 85%;
   background-color: rgb(113, 113, 248);
+  visibility: hidden;
 }
 main .selection .markers {
   display: flex;
@@ -78,7 +79,6 @@ main .board {
   display: flex;
   flex-flow: row wrap;
   place-content: center;
-  visibility: hidden;
 }
 main .board div {
   display: flex;
@@ -106,9 +106,8 @@ main .score {
   font-size: 2.5rem;
   border: 1px solid black;
   position: relative;
-  transform: translateY(-20px);
   box-shadow: 0 0 8px black;
-  visibility: hidden;
+  visibility: visible;
 }
 main .score div {
   text-align: center;
@@ -121,22 +120,21 @@ main .restart {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: relative;
   text-align: center;
-  visibility: hidden;
 }
 main .restart div {
   background-color: rgb(56, 56, 56);
   padding: 10px 40px;
   margin: 0 20px;
-  border: 1px solid #eee;
   text-align: center;
   font-size: 3rem;
   border-radius: 8px;
 }
 main .restart div:hover {
   cursor: default;
-  background-color: rgb(146, 146, 146);
+  box-shadow: 0 0 25px rgb(113, 113, 248);
+  text-shadow: 1px 0px 10px rgb(113, 113, 248);
 }
 main .restart div:active {
   transform: scale(0.95);

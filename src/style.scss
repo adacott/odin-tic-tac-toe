@@ -82,6 +82,7 @@ main {
         padding: 10px 0;
         width: 85%;
         background-color: $accents;
+        visibility: hidden;
 
         .markers {
             display: flex;
@@ -114,7 +115,7 @@ main {
         display: flex;
         flex-flow: row wrap;
         place-content: center;
-        visibility: hidden;
+        // visibility: hidden;
 
         div {
             display: flex;
@@ -147,9 +148,9 @@ main {
         font-size: 2.5rem;
         border: 1px solid black;
         position: relative;
-        transform: translateY(-20px);
+        // transform: translateY(-20px);
         @include shadow("heavy");
-        visibility: hidden;
+        visibility: visible;
 
         div {
             text-align: center;
@@ -165,22 +166,23 @@ main {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: absolute;
+        position: relative;
         text-align: center;
-        visibility: hidden;
+        // visibility: hidden;
 
         div {
             background-color: $secondary-color;
             padding: 10px 40px;
             margin: 0 20px;
-            border: 1px solid #eee;
             text-align: center;
             font-size: 3rem;
             border-radius: 8px;
 
+
             &:hover {
                 cursor: default;
-                background-color: $primary-color
+                box-shadow: 0 0 25px $accents;
+                text-shadow: 1px 0px 10px $accents;
             }
 
             &:active {
