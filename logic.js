@@ -25,7 +25,6 @@ const gameBoard = (function () {
 
     function checkForTie() {
         if (board.every(row => row.every(cell => cell !== null))) {
-            console.log("It was a tie!");
             tie = true;
         }
     }
@@ -35,14 +34,12 @@ const gameBoard = (function () {
         for (let i = 0; i < 3; i++) {
             if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
                 if (board[0][i] === player1.marker) {
-                    console.log("Player 1 wins!");
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     win = true;
                 }
                 else if (board[0][i] === player2.marker) {
-                    console.log("Player 2 wins!");
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
@@ -55,14 +52,12 @@ const gameBoard = (function () {
         for (let i = 0; i < 3; i++) {
             if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
                 if (board[i][0] === player1.marker) {
-                    console.log("Player 1 wins!");
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     win = true;
                 }
                 else if (board[i][0] === player2.marker) {
-                    console.log("Player 2 wins!");
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
@@ -73,14 +68,12 @@ const gameBoard = (function () {
 
         // check diagonals
         if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player1.marker) {
-            console.log("Player 1 wins!");
             player1.updateScore();
             p1Score.innerHTML = player1.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
             win = true;
         }
         else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player2.marker) {
-            console.log("Player 2 wins!");
             player2.updateScore();
             p2Score.innerHTML = player2.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
@@ -88,14 +81,12 @@ const gameBoard = (function () {
         }
 
         if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player1.marker) {
-            console.log("Player 1 wins!");
             player1.updateScore();
             p1Score.innerHTML = player1.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
             win = true;
         }
         else if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player2.marker) {
-            console.log("Player 2 wins!");
             player2.updateScore();
             p2Score.innerHTML = player2.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
@@ -106,13 +97,25 @@ const gameBoard = (function () {
 
     function clearBoard() {
         if (win == true || tie == true) {
-            board = [
-                [null, null, null],
-                [null, null, null],
-                [null, null, null]
-            ];
+            if (p1Score.innerHTML == 3 || p2Score.innerHTML == 3) {
+                console.log("Player 1 kicked ass!");
+                p1Score.innerHTML = 0;
+                p2Score.innerHTML = 0;
+                board = [
+                    [null, null, null],
+                    [null, null, null],
+                    [null, null, null]
+                ];
+                selection.style.visibility = "visible";
+            }
+            else {
+                board = [
+                    [null, null, null],
+                    [null, null, null],
+                    [null, null, null]
+                ];
+            }
             currentPlayer = player1;
-
             gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
             gameButtons.forEach(btn => btn.innerHTML = "");
 
@@ -143,9 +146,7 @@ function createPlayers() {
     player2 = createPlayer(mk);
     currentPlayer = player1;
 
-    const selection = document.querySelector(".selection");
     selection.style.visibility = "hidden";
-
 }
 
 function gameFlow() {
@@ -159,9 +160,11 @@ function gameFlow() {
     currentPlayer = (currentPlayer === player1) ? player2 : player1;
 }
 
-let player1, player2, win = false, tie = false;
-let p1Score = document.querySelector(".p1s");
-let p2Score = document.querySelector(".p2s");
+let player1, player2
+const p1Score = document.querySelector(".p1s");
+const p2Score = document.querySelector(".p2s");
+
+const selection = document.querySelector(".selection");
 
 const gameButtons = document.querySelectorAll(".board div");
 gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
