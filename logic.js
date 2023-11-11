@@ -9,10 +9,6 @@ const gameBoard = (function () {
     ];
     console.log("Board created: ", board);
 
-    function displayBoard() {
-        console.log(board);
-    }
-
     function placeMarker(player, location, event) {
         mark = player.marker
         event.innerHTML = `${mark}`;
@@ -89,7 +85,7 @@ const gameBoard = (function () {
     }
 
 
-    return { displayBoard, placeMarker, checkForTie, checkForWin, clearBoard }
+    return { placeMarker, checkForTie, checkForWin, clearBoard }
 }());
 
 // factory function to create players given a marker
@@ -118,7 +114,6 @@ function createPlayers() {
 function gameFlow() {
     loc = this.dataset.indexNumber;
     gameBoard.placeMarker(currentPlayer, loc, this);
-    gameBoard.displayBoard();
 
     if (!gameBoard.checkForWin()) {
         gameBoard.checkForTie();
