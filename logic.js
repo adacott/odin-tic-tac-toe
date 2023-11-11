@@ -26,7 +26,7 @@ const gameBoard = (function () {
     function checkForTie() {
         if (board.every(row => row.every(cell => cell !== null))) {
             console.log("It was a tie!");
-            return true;
+            tie = true;
         }
     }
 
@@ -39,14 +39,14 @@ const gameBoard = (function () {
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-                    return true;
+                    win = true;
                 }
                 else if (board[0][i] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-                    return true;
+                    win = true;
                 }
             }
         }
@@ -59,14 +59,14 @@ const gameBoard = (function () {
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-                    return true;
+                    win = true;
                 }
                 else if (board[i][0] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-                    return true;
+                    win = true;
                 }
             }
         }
@@ -77,14 +77,14 @@ const gameBoard = (function () {
             player1.updateScore();
             p1Score.innerHTML = player1.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            return true;
+            win = true;
         }
         else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
             p2Score.innerHTML = player2.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            return true;
+            win = true;
         }
 
         if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player1.marker) {
@@ -92,14 +92,14 @@ const gameBoard = (function () {
             player1.updateScore();
             p1Score.innerHTML = player1.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            return true;
+            win = true;
         }
         else if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
             p2Score.innerHTML = player2.displayScore();
             gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            return true;
+            win = true;
         }
 
     }
@@ -152,7 +152,7 @@ function gameFlow() {
 
 }
 
-let player1, player2, turn = "X", currentPlayer;
+let player1, player2, turn = "X", currentPlayer, win = false, tie = false;
 let p1Score = document.querySelector(".p1s");
 let p2Score = document.querySelector(".p2s");
 
@@ -161,4 +161,9 @@ gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
 
 const markerSelection = document.querySelectorAll(".markers div");
 markerSelection.forEach(mk => mk.addEventListener("click", createPlayers));
+
+const restartButton = document.querySelector(".restart_button");
+restartButton.addEventListener("click", function (e) {
+    console.log(e);
+})
 
