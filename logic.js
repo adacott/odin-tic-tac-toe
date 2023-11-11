@@ -37,11 +37,13 @@ const gameBoard = (function () {
                 if (board[0][i] === player1.marker) {
                     console.log("Player 1 wins!");
                     player1.updateScore();
+                    p1Score.innerHTML = player1.displayScore();
                     return true;
                 }
                 else if (board[0][i] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
+                    p2Score.innerHTML = player2.displayScore();
                     return true;
                 }
             }
@@ -53,11 +55,13 @@ const gameBoard = (function () {
                 if (board[i][0] === player1.marker) {
                     console.log("Player 1 wins!");
                     player1.updateScore();
+                    p1Score.innerHTML = player1.displayScore();
                     return true;
                 }
                 else if (board[i][0] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
+                    p2Score.innerHTML = player2.displayScore();
                     return true;
                 }
             }
@@ -67,22 +71,26 @@ const gameBoard = (function () {
         if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player1.marker) {
             console.log("Player 1 wins!");
             player1.updateScore();
+            p1Score.innerHTML = player1.displayScore();
             return true;
         }
         else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
+            p2Score.innerHTML = player2.displayScore();
             return true;
         }
 
         if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player1.marker) {
             console.log("Player 1 wins!");
             player1.updateScore();
+            p1Score.innerHTML = player1.displayScore();
             return true;
         }
         else if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
+            p2Score.innerHTML = player2.displayScore();
             return true;
         }
 
@@ -137,8 +145,10 @@ function gameFlow() {
 }
 
 let player1, player2, turn = "X", currentPlayer;
+let p1Score = document.querySelector(".p1s");
+let p2Score = document.querySelector(".p2s");
 
-let = gameButtons = document.querySelectorAll(".board div");
+const gameButtons = document.querySelectorAll(".board div");
 gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
 
 const markerSelection = document.querySelectorAll(".markers div");
