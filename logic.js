@@ -40,7 +40,7 @@ const gameBoard = (function () {
                 } else if (a === player2.marker) {
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
-                    p1Score.parentElement.classList.add("score");
+                    p2Score.classList.add("score");
                     win = true;
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     highlightWinning(type, i);
@@ -97,9 +97,8 @@ const gameBoard = (function () {
             gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
             gameButtons.forEach(btn => btn.innerHTML = "");
         }
-
-
-
+        p1Score.classList.remove("score");
+        p2Score.classList.remove("score");
     }
 
 
