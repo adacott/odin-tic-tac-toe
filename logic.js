@@ -38,12 +38,14 @@ const gameBoard = (function () {
                     console.log("Player 1 wins!");
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
+                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     return true;
                 }
                 else if (board[0][i] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
+                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     return true;
                 }
             }
@@ -56,12 +58,14 @@ const gameBoard = (function () {
                     console.log("Player 1 wins!");
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
+                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     return true;
                 }
                 else if (board[i][0] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
+                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     return true;
                 }
             }
@@ -72,12 +76,14 @@ const gameBoard = (function () {
             console.log("Player 1 wins!");
             player1.updateScore();
             p1Score.innerHTML = player1.displayScore();
+            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
             return true;
         }
         else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
             p2Score.innerHTML = player2.displayScore();
+            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
             return true;
         }
 
@@ -85,12 +91,14 @@ const gameBoard = (function () {
             console.log("Player 1 wins!");
             player1.updateScore();
             p1Score.innerHTML = player1.displayScore();
+            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
             return true;
         }
         else if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
             p2Score.innerHTML = player2.displayScore();
+            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
             return true;
         }
 
