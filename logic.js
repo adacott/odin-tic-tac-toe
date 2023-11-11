@@ -22,6 +22,7 @@ const gameBoard = (function () {
     function checkForTie() {
         if (board.every(row => row.every(cell => cell !== null))) {
             tie = true;
+            restartButton.innerHTML = "Tie Game!";
         }
     }
 
@@ -59,7 +60,7 @@ const gameBoard = (function () {
     function clearBoard() {
         if (win == true || tie == true) {
             if (p1Score.innerHTML == 3 || p2Score.innerHTML == 3) {
-                console.log("Player 1 kicked ass!");
+                restartButton.innerHTML = "Clear";
                 p1Score.innerHTML = 0;
                 p2Score.innerHTML = 0;
                 board = [
@@ -75,13 +76,28 @@ const gameBoard = (function () {
                     [null, null, null],
                     [null, null, null]
                 ];
+                restartButton.innerHTML = "Clear";
             }
             currentPlayer = player1;
             gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
             gameButtons.forEach(btn => btn.innerHTML = "");
             gameButtons.forEach(btn => btn.classList.remove("winning"));
-
         }
+        else {
+            p1Score.innerHTML = 0;
+            p2Score.innerHTML = 0;
+            currentPlayer = player1;
+            board = [
+                [null, null, null],
+                [null, null, null],
+                [null, null, null]
+            ];
+            gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
+            gameButtons.forEach(btn => btn.innerHTML = "");
+        }
+
+
+
     }
 
 
@@ -119,6 +135,10 @@ function gameFlow() {
         gameBoard.checkForTie();
     }
     currentPlayer = (currentPlayer === player1) ? player2 : player1;
+
+    if (p1Score.innerHTML == 3 || p2Score.innerHTML == 3) {
+        restartButton.innerHTML = "Restart!";
+    }
 }
 
 function coordtoIndex(row, col) {
@@ -153,7 +173,7 @@ function highlightWinning(type, i) {
 }
 
 
-let player1, player2
+let player1, player2, win, tie
 const p1Score = document.querySelector(".p1s");
 const p2Score = document.querySelector(".p2s");
 
