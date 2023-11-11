@@ -18,6 +18,7 @@ const gameBoard = (function () {
         event.innerHTML = `${mark}`;
         const row = Math.floor(location / 3);
         const col = location % 3;
+        event.removeEventListener("click", gameFlow);
 
         board[row][col] = mark;
     }
