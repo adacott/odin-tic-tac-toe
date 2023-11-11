@@ -23,11 +23,9 @@ const gameBoard = (function () {
     }
 
     function checkForTie() {
-        if (board.every(item => item !== null)) {
+        if (board.every(row => row.every(cell => cell !== null))) {
+            console.log("It was a tie!");
             return true;
-        }
-        else {
-            return false;
         }
     }
 
@@ -38,10 +36,12 @@ const gameBoard = (function () {
                 if (board[0][i] === player1.marker) {
                     console.log("Player 1 wins!");
                     player1.updateScore();
+                    return true;
                 }
                 else if (board[0][i] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
+                    return true;
                 }
             }
         }
@@ -52,10 +52,12 @@ const gameBoard = (function () {
                 if (board[i][0] === player1.marker) {
                     console.log("Player 1 wins!");
                     player1.updateScore();
+                    return true;
                 }
                 else if (board[i][0] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
+                    return true;
                 }
             }
         }
@@ -64,19 +66,23 @@ const gameBoard = (function () {
         if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player1.marker) {
             console.log("Player 1 wins!");
             player1.updateScore();
+            return true;
         }
         else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
+            return true;
         }
 
         if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player1.marker) {
             console.log("Player 1 wins!");
             player1.updateScore();
+            return true;
         }
         else if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player2.marker) {
             console.log("Player 2 wins!");
             player2.updateScore();
+            return true;
         }
 
     }
@@ -123,8 +129,10 @@ function gameFlow() {
     gameBoard.displayBoard();
     turn = (turn === "X") ? "O" : "X";
 
-    gameBoard.checkForWin();
-    gameBoard.checkForTie();
+    if (!gameBoard.checkForWin()) {
+        gameBoard.checkForTie();
+    }
+
 }
 
 let player1, player2, turn = "X", currentPlayer;
