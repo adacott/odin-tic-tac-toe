@@ -110,6 +110,10 @@ main .board div:active {
   transform: translateY(2px);
 }
 
+main .board div.winning {
+  background-color: yellow;
+}
+
 main .score {
   width: 85%;
   display: flex;
