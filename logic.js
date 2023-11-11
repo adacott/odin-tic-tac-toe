@@ -30,69 +30,32 @@ const gameBoard = (function () {
     }
 
     function checkForWin() {
-        // check columns
-        for (let i = 0; i < 3; i++) {
-            if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
-                if (board[0][i] === player1.marker) {
+        const checkLine = (line) => {
+            const [a, b, c] = line;
+            if (a === b && b === c) {
+                if (a === player1.marker) {
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
-                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     win = true;
-                }
-                else if (board[0][i] === player2.marker) {
+                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
+                } else if (a === player2.marker) {
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
-                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     win = true;
+                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                 }
             }
-        }
+        };
 
-        // check rows
+        // Check columns and rows
         for (let i = 0; i < 3; i++) {
-            if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
-                if (board[i][0] === player1.marker) {
-                    player1.updateScore();
-                    p1Score.innerHTML = player1.displayScore();
-                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-                    win = true;
-                }
-                else if (board[i][0] === player2.marker) {
-                    player2.updateScore();
-                    p2Score.innerHTML = player2.displayScore();
-                    gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-                    win = true;
-                }
-            }
+            checkLine([board[i][0], board[i][1], board[i][2]]); // Check rows
+            checkLine([board[0][i], board[1][i], board[2][i]]); // Check columns
         }
 
-        // check diagonals
-        if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player1.marker) {
-            player1.updateScore();
-            p1Score.innerHTML = player1.displayScore();
-            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            win = true;
-        }
-        else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player2.marker) {
-            player2.updateScore();
-            p2Score.innerHTML = player2.displayScore();
-            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            win = true;
-        }
-
-        if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player1.marker) {
-            player1.updateScore();
-            p1Score.innerHTML = player1.displayScore();
-            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            win = true;
-        }
-        else if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player2.marker) {
-            player2.updateScore();
-            p2Score.innerHTML = player2.displayScore();
-            gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
-            win = true;
-        }
-
+        // Check diagonals
+        checkLine([board[0][0], board[1][1], board[2][2]]);
+        checkLine([board[0][2], board[1][1], board[2][0]]);
     }
 
     function clearBoard() {
