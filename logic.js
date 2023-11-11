@@ -13,8 +13,8 @@ const gameBoard = (function () {
         console.log(board);
     }
 
-    function placeMarker(location, event) {
-        mark = player1.marker
+    function placeMarker(player, location, event) {
+        mark = player.marker
         event.innerHTML = `${mark}`;
         const row = Math.floor(location / 3);
         const col = location % 3;
@@ -31,15 +31,15 @@ const gameBoard = (function () {
         }
     }
 
-    function checkForWin(player1, player2) {
+    function checkForWin() {
         // check columns
         for (let i = 0; i < 3; i++) {
-            if (board[0][i] === board[1][i] && board[1][i] === board[2][j]) {
+            if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
                 if (board[0][i] === player1.marker) {
                     console.log("Player 1 wins!");
                     player1.updateScore();
                 }
-                else {
+                else if (board[0][i] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
                 }
@@ -53,7 +53,7 @@ const gameBoard = (function () {
                     console.log("Player 1 wins!");
                     player1.updateScore();
                 }
-                else {
+                else if (board[i][0] === player2.marker) {
                     console.log("Player 2 wins!");
                     player2.updateScore();
                 }
@@ -61,26 +61,24 @@ const gameBoard = (function () {
         }
 
         // check diagonals
-        if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
-            if (board[0][0] === player1.marker) {
-                console.log("Player 1 wins!");
-                player1.updateScore();
-            }
-            else {
-                console.log("Player 2 wins!");
-                player2.updateScore();
-            }
+        if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player1.marker) {
+            console.log("Player 1 wins!");
+            player1.updateScore();
         }
-        else if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
-            if (board[0][2] === player1.marker) {
-                console.log("Player 1 wins!");
-                player1.updateScore();
-            }
-            else {
-                console.log("Player 2 wins!");
-                player2.updateScore();
-            }
+        else if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] === player2.marker) {
+            console.log("Player 2 wins!");
+            player2.updateScore();
         }
+
+        if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player1.marker) {
+            console.log("Player 1 wins!");
+            player1.updateScore();
+        }
+        else if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] === player2.marker) {
+            console.log("Player 2 wins!");
+            player2.updateScore();
+        }
+
     }
 
     function clearBoard() {
@@ -119,12 +117,17 @@ function createPlayers() {
 }
 
 function gameFlow() {
+    currentPlayer = (player1.marker === turn) ? player1 : player2;
     loc = this.dataset.indexNumber;
-    gameBoard.placeMarker(loc, this);
+    gameBoard.placeMarker(currentPlayer, loc, this);
     gameBoard.displayBoard();
+    turn = (turn === "X") ? "O" : "X";
+
+    gameBoard.checkForWin();
+    gameBoard.checkForTie();
 }
 
-let player1, player2;
+let player1, player2, turn = "X", currentPlayer;
 
 let = gameButtons = document.querySelectorAll(".board div");
 gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
