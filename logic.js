@@ -111,8 +111,11 @@ const gameBoard = (function () {
                 [null, null, null],
                 [null, null, null]
             ];
+            currentPlayer = player1;
+
             gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
             gameButtons.forEach(btn => btn.innerHTML = "");
+
         }
     }
 
@@ -135,29 +138,28 @@ function createPlayer(mark) {
 
 // function to create both players in a game after the initial click
 function createPlayers() {
-    console.log(this.innerHTML);
     player1 = createPlayer(`${this.innerHTML}`);
     let mk = (player1.marker === "X") ? "O" : "X";
     player2 = createPlayer(mk);
+    currentPlayer = player1;
 
     const selection = document.querySelector(".selection");
     selection.style.visibility = "hidden";
+
 }
 
 function gameFlow() {
-    currentPlayer = (player1.marker === turn) ? player1 : player2;
     loc = this.dataset.indexNumber;
     gameBoard.placeMarker(currentPlayer, loc, this);
     gameBoard.displayBoard();
-    turn = (turn === "X") ? "O" : "X";
 
     if (!gameBoard.checkForWin()) {
         gameBoard.checkForTie();
     }
-
+    currentPlayer = (currentPlayer === player1) ? player2 : player1;
 }
 
-let player1, player2, turn = "X", currentPlayer, win = false, tie = false;
+let player1, player2, win = false, tie = false;
 let p1Score = document.querySelector(".p1s");
 let p2Score = document.querySelector(".p2s");
 
