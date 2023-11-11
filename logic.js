@@ -33,12 +33,14 @@ const gameBoard = (function () {
                 if (a === player1.marker) {
                     player1.updateScore();
                     p1Score.innerHTML = player1.displayScore();
+                    p1Score.classList.add("score");
                     win = true;
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     highlightWinning(type, i);
                 } else if (a === player2.marker) {
                     player2.updateScore();
                     p2Score.innerHTML = player2.displayScore();
+                    p1Score.parentElement.classList.add("score");
                     win = true;
                     gameButtons.forEach(btn => btn.removeEventListener("click", gameFlow));
                     highlightWinning(type, i);

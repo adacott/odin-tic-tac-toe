@@ -1,15 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 @keyframes winAnimation {
   0% {
     box-shadow: 0 0 25px 10px #4040f6;
   }
+
   50% {
     box-shadow: 0 0 25px 5px white;
   }
+
   100% {
     box-shadow: 0 0 25px 10px #4040f6;
   }
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -49,6 +53,7 @@ main {
   border-left: 1px solid rgb(113, 113, 248);
   border-right: 1px solid rgb(113, 113, 248);
 }
+
 main .selection {
   display: flex;
   flex-direction: column;
@@ -65,9 +70,11 @@ main .selection {
   background-color: rgb(113, 113, 248);
   visibility: visible;
 }
+
 main .selection .markers {
   display: flex;
 }
+
 main .selection .markers div {
   background-color: rgb(56, 56, 56);
   padding: 10px 40px;
@@ -77,13 +84,16 @@ main .selection .markers div {
   font-size: 3rem;
   border-radius: 8px;
 }
+
 main .selection .markers div:hover {
   background-color: rgb(146, 146, 146);
   cursor: default;
 }
+
 main .selection .markers div:active {
   transform: scale(0.95);
 }
+
 main .board {
   width: 85%;
   height: 60%;
@@ -91,6 +101,7 @@ main .board {
   flex-flow: row wrap;
   place-content: center;
 }
+
 main .board div {
   display: flex;
   align-items: center;
@@ -100,20 +111,24 @@ main .board div {
   border: 2px solid black;
   border-radius: 8px;
   background-color: rgb(113, 113, 248);
-  font-size: clamp(4rem, 7.5vw, 18rem);
+  font-size: clamp(7rem, 7.5vw, 18rem);
   box-shadow: 0 0 4px black;
 }
+
 main .board div:hover {
   background-color: rgb(139, 139, 252);
   cursor: default;
 }
+
 main .board div:active {
   transform: translateY(2px);
 }
+
 main .board div.winning {
   z-index: 2;
   animation: winAnimation 4s ease-in-out infinite;
 }
+
 main .score {
   width: 85%;
   display: flex;
@@ -124,12 +139,22 @@ main .score {
   position: relative;
   box-shadow: 0 0 8px black;
 }
+
 main .score div {
   text-align: center;
   padding: 4px 0;
   color: rgb(113, 113, 248);
   text-shadow: 1px 1px 1px black;
 }
+
+main .score .p1s.score,
+main .score .p2s.score {
+  border: none;
+  box-shadow: none;
+  color: #1010f3;
+  transition: color 2s ease;
+}
+
 main .restart {
   display: flex;
   flex-direction: column;
@@ -138,6 +163,7 @@ main .restart {
   position: relative;
   text-align: center;
 }
+
 main .restart div {
   background-color: rgb(56, 56, 56);
   padding: 10px 40px;
@@ -146,11 +172,13 @@ main .restart div {
   font-size: 3rem;
   border-radius: 15px;
 }
+
 main .restart div:hover {
   cursor: default;
   box-shadow: 0 0 25px rgb(113, 113, 248);
   text-shadow: 1px 0px 10px rgb(113, 113, 248);
 }
+
 main .restart div:active {
   transform: scale(0.95);
 }

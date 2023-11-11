@@ -40,7 +40,6 @@ $accents: rgb(113, 113, 248);
     }
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -176,6 +175,14 @@ main {
             color: $accents;
             text-shadow: 1px 1px 1px black;
         }
+
+        .p1s.score,
+        .p2s.score {
+            border: none;
+            box-shadow: none;
+            color: darken($accents, 20%);
+            transition: color 2s ease;
+        }
     }
 
     // The section for restarting the game
@@ -207,8 +214,6 @@ main {
             }
         }
     }
-
-
 }
 
 footer {
