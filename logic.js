@@ -105,13 +105,18 @@ const gameBoard = (function () {
     }
 
     function clearBoard() {
-        board = [
-            [null, null, null],
-            [null, null, null],
-            [null, null, null]
-        ];
-        console.log("Board reset");
+        if (win == true || tie == true) {
+            board = [
+                [null, null, null],
+                [null, null, null],
+                [null, null, null]
+            ];
+            gameButtons.forEach(btn => btn.addEventListener("click", gameFlow));
+            gameButtons.forEach(btn => btn.innerHTML = "");
+        }
     }
+
+
     return { displayBoard, placeMarker, checkForTie, checkForWin, clearBoard }
 }());
 
@@ -163,7 +168,5 @@ const markerSelection = document.querySelectorAll(".markers div");
 markerSelection.forEach(mk => mk.addEventListener("click", createPlayers));
 
 const restartButton = document.querySelector(".restart_button");
-restartButton.addEventListener("click", function (e) {
-    console.log(e);
-})
+restartButton.addEventListener("click", gameBoard.clearBoard);
 
