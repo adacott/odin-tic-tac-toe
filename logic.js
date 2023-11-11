@@ -167,6 +167,3 @@ markerSelection.forEach(mk => mk.addEventListener("click", createPlayers));
 
 const restartButton = document.querySelector(".restart_button");
 restartButton.addEventListener("click", gameBoard.clearBoard);
-
-
-

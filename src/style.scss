@@ -26,6 +26,20 @@ $accents: rgb(113, 113, 248);
     }
 }
 
+@keyframes winAnimation {
+    0% {
+        box-shadow: 0 0 25px 10px darken($accents, 10%);
+    }
+
+    50% {
+        box-shadow: 0 0 25px 5px white;
+    }
+
+    100% {
+        box-shadow: 0 0 25px 10px darken($accents, 10%);
+    }
+}
+
 
 * {
     margin: 0;
@@ -48,7 +62,7 @@ body {
 
 header {
     background-color: $secondary-color;
-    border-bottom: 2px solid $accents;
+    border-bottom: 3px solid $accents;
     padding: 20px 0px;
     display: flex;
     place-content: center;
@@ -82,7 +96,7 @@ main {
         padding: 10px 0;
         width: 85%;
         background-color: $accents;
-        visibility: hidden;
+        visibility: visible;
 
         .markers {
             display: flex;
@@ -137,6 +151,11 @@ main {
             &:active {
                 transform: translateY(2px);
             }
+
+            &.winning {
+                z-index: 2;
+                animation: winAnimation 4s ease-in-out infinite;
+            }
         }
     }
 
@@ -147,10 +166,9 @@ main {
         justify-content: space-around;
         font-size: 2.5rem;
         border: 1px solid black;
+        border-radius: 35px;
         position: relative;
-        // transform: translateY(-20px);
         @include shadow("heavy");
-        visibility: visible;
 
         div {
             text-align: center;
@@ -168,7 +186,6 @@ main {
         align-items: center;
         position: relative;
         text-align: center;
-        // visibility: hidden;
 
         div {
             background-color: $secondary-color;
@@ -176,7 +193,7 @@ main {
             margin: 0 20px;
             text-align: center;
             font-size: 3rem;
-            border-radius: 8px;
+            border-radius: 15px;
 
 
             &:hover {
