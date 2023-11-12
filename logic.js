@@ -1,5 +1,3 @@
-// Create an object function for: the gameboard, the players, a game object to control the flow of the game itself
-
 const gameBoard = (function () {
     let board = [
         [null, null, null],
