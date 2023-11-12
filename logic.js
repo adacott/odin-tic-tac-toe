@@ -1,5 +1,4 @@
 // Create an object function for: the gameboard, the players, a game object to control the flow of the game itself
-// Get a working console game first
 
 const gameBoard = (function () {
     let board = [
