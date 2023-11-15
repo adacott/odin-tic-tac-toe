@@ -146,22 +146,29 @@ function coordtoIndex(row, col) {
 function highlightWinning(type, i) {
     const indexes = [];
 
-    if (type === "row") {
-        for (let j = 0; j < 3; j++) {
-            indexes.push(coordtoIndex(i, j));
-        }
-    } else if (type === "col") {
-        for (let j = 0; j < 3; j++) {
-            indexes.push(coordtoIndex(j, i));
-        }
-    } else if (type === "diag1") {
-        for (let j = 0; j < 3; j++) {
-            indexes.push(coordtoIndex(j, j));
-        }
-    } else if (type === "diag2") {
-        for (let j = 0; j < 3; j++) {
-            indexes.push(coordtoIndex(j, 2 - j));
-        }
+    switch (type) {
+        case "row":
+            for (let j = 0; j < 3; j++) {
+                indexes.push(coordtoIndex(i, j));
+            }
+            break;
+        case "col":
+            for (let j = 0; j < 3; j++) {
+                indexes.push(coordtoIndex(j, i));
+            }
+            break;
+        case "diag1":
+            for (let j = 0; j < 3; j++) {
+                indexes.push(coordtoIndex(j, j));
+            }
+            break;
+        case "diag2":
+            for (let j = 0; j < 3; j++) {
+                indexes.push(coordtoIndex(j, 2 - j));
+            }
+            break;
+        default:
+            break;
     }
 
     indexes.forEach(index => {
